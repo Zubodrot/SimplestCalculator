@@ -241,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
                 uneditableTV.setText(Double.toString(uneditedtextinDouble*Double.parseDouble((String)buttonEditableTV.getText())));
                 break;
             case 4:
-                uneditableTV.setText(Double.toString(uneditedtextinDouble/Double.parseDouble((String)buttonEditableTV.getText())));
+                uneditableTV.setText(Double.toString((double)(uneditedtextinDouble/Double.parseDouble((String)buttonEditableTV.getText()))));
                 break;
 
         }
