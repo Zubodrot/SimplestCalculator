@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -249,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private  void calculation (int operationNumber){
+    private void calculation (int operationNumber){
 
 
 
@@ -271,15 +272,16 @@ public class MainActivity extends AppCompatActivity {
             case 4:
 
                 if (buttonEditedTextInDouble == 0){
-                    AlertDialog.Builder alert_builder = new AlertDialog.Builder(MainActivity.this);
+//                    AlertDialog.Builder alert_builder = new AlertDialog.Builder(MainActivity.this);
+//
+//                    alert_builder.setMessage("Can't divide by zero").setPositiveButton("Ok", null);
+//
+//                    AlertDialog alert_zero = alert_builder.create();
+//
+//                    alert_zero.show();
 
-                    alert_builder.setMessage("Can't divide by zero").setPositiveButton("Ok", null);
-
-                    AlertDialog alert_zero = alert_builder.create();
-
-                    alert_zero.show();
-
-
+                    Toast.makeText(this,"Can't divide by zero",Toast.LENGTH_LONG)
+                            .show();
 
 
                 }
@@ -302,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private  void doublePressCheck(){
+    private void doublePressCheck(){
         if (pluspressed){
             calculation(1);
         }
