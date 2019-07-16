@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static TextView uneditableTV;
     private static TextView buttonEditableTV;
+    private static TextView operatorsTV;
 
     private static Button button00;
     private static Button button01;
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
         uneditableTV = findViewById(R.id.tv_closed_text);
         buttonEditableTV = findViewById(R.id.tv_button_editable_text);
+        operatorsTV = findViewById(R.id.tv_operator_placement);
+
 
         button00 = findViewById(R.id.b_00);
         button01 = findViewById(R.id.b_01);
@@ -77,19 +80,27 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.b_00:
                         uneditableTV.setText("");
                         buttonEditableTV.setText("0");
+                        operatorsTV.setText("");
+                        pluspressed = false;
+                        minuspressed = false;
+                        multiplypressed = false;
+                        dividepressed = false;
                         break;
                     case R.id.b_01:
-                        uneditableTV.setText(buttonEditableTV.getText() + "+");
+                        uneditableTV.setText(buttonEditableTV.getText());
+                        operatorsTV.setText("+");
                         pluspressed = true;
                         buttonEditableTV.setText("0");
                         break;
                     case R.id.b_02:
-                        uneditableTV.setText(buttonEditableTV.getText() + "-");
+                        uneditableTV.setText(buttonEditableTV.getText());
+                        operatorsTV.setText("-");
                         minuspressed = true;
                         buttonEditableTV.setText("0");
                         break;
                     case R.id.b_03:
-                        uneditableTV.setText(buttonEditableTV.getText() + "*");
+                        uneditableTV.setText(buttonEditableTV.getText());
+                        operatorsTV.setText("*");
                         multiplypressed = true;
                         buttonEditableTV.setText("0");
                         break;
@@ -122,7 +133,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.b_13:
-                        uneditableTV.setText(buttonEditableTV.getText() + "/");
+                        uneditableTV.setText(buttonEditableTV.getText());
+                        operatorsTV.setText("/");
                         dividepressed = true;
                         buttonEditableTV.setText("0");
                         break;
@@ -224,24 +236,32 @@ public class MainActivity extends AppCompatActivity {
 
     private static void calculation (int operationNumber){
 
-        String onlyNumbers =((String)uneditableTV.getText()).substring(0,((String)uneditableTV.getText()).length()-1);
 
-        double uneditedtextinDouble = Double.parseDouble(onlyNumbers);
 
+        double uneditedTextInDouble = Double.parseDouble((String)(uneditableTV.getText()));
+        double buttonEditedTextInDouble = Double.parseDouble((String)(buttonEditableTV.getText()));
 
         switch (operationNumber){
             case 1:
 
-                uneditableTV.setText(Double.toString(uneditedtextinDouble+Double.parseDouble((String)buttonEditableTV.getText())));
+                uneditableTV.setText(Double.toString(uneditedTextInDouble+buttonEditedTextInDouble));
+                buttonEditableTV.setText("0");
+                operatorsTV.setText("");
                 break;
             case 2:
-                uneditableTV.setText(Double.toString(uneditedtextinDouble-Double.parseDouble((String)buttonEditableTV.getText())));
+                uneditableTV.setText(Double.toString(uneditedTextInDouble-buttonEditedTextInDouble));
+                buttonEditableTV.setText("0");
+                operatorsTV.setText("");
                 break;
             case 3:
-                uneditableTV.setText(Double.toString(uneditedtextinDouble*Double.parseDouble((String)buttonEditableTV.getText())));
+                uneditableTV.setText(Double.toString(uneditedTextInDouble*buttonEditedTextInDouble));
+                buttonEditableTV.setText("0");
+                operatorsTV.setText("");
                 break;
             case 4:
-                uneditableTV.setText(Double.toString((double)(uneditedtextinDouble/Double.parseDouble((String)buttonEditableTV.getText()))));
+                uneditableTV.setText(Double.toString(uneditedTextInDouble/buttonEditedTextInDouble));
+                buttonEditableTV.setText("0");
+                operatorsTV.setText("");
                 break;
 
         }
