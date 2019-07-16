@@ -240,31 +240,33 @@ public class MainActivity extends AppCompatActivity {
 
         double uneditedTextInDouble = Double.parseDouble((String)(uneditableTV.getText()));
         double buttonEditedTextInDouble = Double.parseDouble((String)(buttonEditableTV.getText()));
+        double operationResult = 0;
 
         switch (operationNumber){
             case 1:
 
-                uneditableTV.setText(Double.toString(uneditedTextInDouble+buttonEditedTextInDouble));
-                buttonEditableTV.setText("0");
-                operatorsTV.setText("");
+                operationResult = uneditedTextInDouble + buttonEditedTextInDouble;
                 break;
             case 2:
-                uneditableTV.setText(Double.toString(uneditedTextInDouble-buttonEditedTextInDouble));
-                buttonEditableTV.setText("0");
-                operatorsTV.setText("");
+                operationResult = uneditedTextInDouble - buttonEditedTextInDouble;
                 break;
             case 3:
-                uneditableTV.setText(Double.toString(uneditedTextInDouble*buttonEditedTextInDouble));
-                buttonEditableTV.setText("0");
-                operatorsTV.setText("");
+                operationResult = uneditedTextInDouble * buttonEditedTextInDouble;
                 break;
             case 4:
-                uneditableTV.setText(Double.toString(uneditedTextInDouble/buttonEditedTextInDouble));
-                buttonEditableTV.setText("0");
-                operatorsTV.setText("");
+                operationResult = uneditedTextInDouble / buttonEditedTextInDouble;
                 break;
 
         }
+
+        if (operationResult % 1 == 0) {
+            uneditableTV.setText(Integer.toString((int)operationResult));
+        }
+        else {
+            uneditableTV.setText(Double.toString(operationResult));
+        }
+        buttonEditableTV.setText("0");
+        operatorsTV.setText("");
 
     }
 }

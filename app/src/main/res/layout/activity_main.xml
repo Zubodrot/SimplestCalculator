@@ -21,7 +21,8 @@
         <TextView
             android:id="@+id/tv_operator_placement"
             android:padding="10dp"
-
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:gravity="right"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
