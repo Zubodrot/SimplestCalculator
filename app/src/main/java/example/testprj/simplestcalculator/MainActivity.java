@@ -87,19 +87,19 @@ public class MainActivity extends AppCompatActivity {
                         dividepressed = false;
                         break;
                     case R.id.b_01:
-                        uneditableTV.setText(buttonEditableTV.getText());
+                        doublePressCheck();
                         operatorsTV.setText("+");
                         pluspressed = true;
                         buttonEditableTV.setText("0");
                         break;
                     case R.id.b_02:
-                        uneditableTV.setText(buttonEditableTV.getText());
+                        doublePressCheck();
                         operatorsTV.setText("-");
                         minuspressed = true;
                         buttonEditableTV.setText("0");
                         break;
                     case R.id.b_03:
-                        uneditableTV.setText(buttonEditableTV.getText());
+                        doublePressCheck();
                         operatorsTV.setText("*");
                         multiplypressed = true;
                         buttonEditableTV.setText("0");
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.b_13:
-                        uneditableTV.setText(buttonEditableTV.getText());
+                        doublePressCheck();
                         operatorsTV.setText("/");
                         dividepressed = true;
                         buttonEditableTV.setText("0");
@@ -171,6 +171,13 @@ public class MainActivity extends AppCompatActivity {
                         if (minuspressed) calculation(2);
                         if (multiplypressed) calculation(3);
                         if (dividepressed) calculation(4);
+                        buttonEditableTV.setText(uneditableTV.getText());
+                        uneditableTV.setText("");
+                        operatorsTV.setText("");
+                        pluspressed = false;
+                        minuspressed = false;
+                        multiplypressed = false;
+                        dividepressed = false;
                         break;
 
                     case R.id.b_30:
@@ -266,7 +273,26 @@ public class MainActivity extends AppCompatActivity {
             uneditableTV.setText(Double.toString(operationResult));
         }
         buttonEditableTV.setText("0");
-        operatorsTV.setText("");
 
+
+    }
+
+
+    private static void doublePressCheck(){
+        if (pluspressed){
+            calculation(1);
+        }
+        else if (minuspressed){
+            calculation(2);
+        }
+        else if (multiplypressed){
+            calculation(3);
+        }
+        else if (dividepressed){
+            calculation(4);
+        }
+        else {
+            uneditableTV.setText(buttonEditableTV.getText());
+        }
     }
 }
