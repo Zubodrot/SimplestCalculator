@@ -2,6 +2,8 @@ package example.testprj.simplestcalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -43,10 +45,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
 
         uneditableTV = findViewById(R.id.tv_closed_text);
         buttonEditableTV = findViewById(R.id.tv_button_editable_text);
@@ -72,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         button31 = findViewById(R.id.b_31);
         button32 = findViewById(R.id.b_32);
         button33 = findViewById(R.id.b_33);
+
+
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
@@ -241,13 +249,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private static void calculation (int operationNumber){
+    private  void calculation (int operationNumber){
 
 
 
         double uneditedTextInDouble = Double.parseDouble((String)(uneditableTV.getText()));
         double buttonEditedTextInDouble = Double.parseDouble((String)(buttonEditableTV.getText()));
-        double operationResult = 0;
+        double operationResult = uneditedTextInDouble;
 
         switch (operationNumber){
             case 1:
@@ -261,7 +269,23 @@ public class MainActivity extends AppCompatActivity {
                 operationResult = uneditedTextInDouble * buttonEditedTextInDouble;
                 break;
             case 4:
-                operationResult = uneditedTextInDouble / buttonEditedTextInDouble;
+
+                if (buttonEditedTextInDouble == 0){
+                    AlertDialog.Builder alert_builder = new AlertDialog.Builder(MainActivity.this);
+
+                    alert_builder.setMessage("Can't divide by zero").setPositiveButton("Ok", null);
+
+                    AlertDialog alert_zero = alert_builder.create();
+
+                    alert_zero.show();
+
+
+
+
+                }
+                else {
+                    operationResult = uneditedTextInDouble / buttonEditedTextInDouble;
+                }
                 break;
 
         }
@@ -278,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private static void doublePressCheck(){
+    private  void doublePressCheck(){
         if (pluspressed){
             calculation(1);
         }
@@ -295,4 +319,7 @@ public class MainActivity extends AppCompatActivity {
             uneditableTV.setText(buttonEditableTV.getText());
         }
     }
+
+
+
 }
